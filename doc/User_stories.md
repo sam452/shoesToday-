@@ -43,7 +43,3 @@ As an interface
 In order to provide the user with feedback on the zipcode they enter
 I want to present an informational response that the zipcode entered is not valid
 
-
-As a <user or actor>
-In order to <accomplish goal X or achieve a given business value>
-I want to <perform an action>
