@@ -32,11 +32,11 @@ In order to not frustrate the user when NOAA doesn't respond
 so that I can respond to the user with the previous day's image
 
 As a backend app
-In order to provide the user with the correct image
+In order to provide the user with the correct image of the shoe type
 I want to respond according to the acceptance criteria
 
 As an interface
-In order to provide the user with the correct image
+In order to provide the user with the correct image of the shoe type
 I want to get the correct response from the backend app
 
 As an interface
