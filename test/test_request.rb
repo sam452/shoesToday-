@@ -32,6 +32,5 @@ class RequestTest < Test::Unit::TestCase
     assert_equal(parsing["forecast"]["txt_forecast"]["forecastday"][0]["pop"].to_i, 0)
   end
 
-
 end
 

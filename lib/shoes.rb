@@ -1,5 +1,6 @@
-require_relative 'shoes'
 require_relative 'request'
+require_relative 'zip'
+#require 'ruby_debug'
 
 class Shoes
   include Enumerable
@@ -7,27 +8,38 @@ class Shoes
   attr_reader :shoes
   attr_reader :shoes_image_url
   
-  THRESHOLD = 30
   SHOES = [
     {:temp => 90, :precipitation => false, :shoes => 'Sandals'},
-    {:temp => 90, :precipitation => true, :shoes => 'Flip-Flops'},
+    {:temp => 90, :precipitation => true, :shoes => 'FlipFlops'},
     {:temp => 80, :precipitation => false, :shoes => 'Sandals'},
     {:temp => 80, :precipitation => true, :shoes => 'Flats'},
     {:temp => 70, :precipitation => false, :shoes => 'Open-toed'},
     {:temp => 70, :precipitation => true, :shoes => 'Tall'},
-    {:temp => 60, :precipitation => false, :shoes => 'Patent leather'},
+    {:temp => 60, :precipitation => false, :shoes => 'PatentLeather'},
     {:temp => 60, :precipitation => true, :shoes => 'Tall'},
     {:temp => 50, :precipitation => false, :shoes => 'Sneaker'},
     {:temp => 50, :precipitation => true, :shoes => 'Boots'},
     {:temp => 40, :precipitation => false, :shoes => 'Flats'},
-    {:temp => 40, :precipitation => true, :shoes => 'Cowboy boots'},
+    {:temp => 40, :precipitation => true, :shoes => 'CowboyBoots'},
     {:temp => 30, :precipitation => false, :shoes => 'Boots'},
     {:temp => 30, :precipitation => true, :shoes => 'Galoshes'},
     {:temp => 20, :precipitation => false, :shoes => 'Boots'},
-    {:temp => 20, :precipitation => true, :shoes => 'Water-proof boots'},
+    {:temp => 20, :precipitation => true, :shoes => 'WaterProofBoots'},
     {:temp => 10, :precipitation => false, :shoes => 'Boots'},
-    {:temp => 10, :precipitation => true, :shoes => 'Water-proof boots'},
+    {:temp => 10, :precipitation => true, :shoes => 'Water-proofBoots'},
   ]
+  
+  IMAGES = {:Sandals => "../pub/sandals.jpg",
+    :Flats => "../pub/flats.jpg",
+    :PatentLeather => "../pub/patent-leather.jpg",
+    :WaterProofBoots => "../pub/water-proof-boots.jpg",
+    :Sneaker => "../pub/sneak.jpg",
+    :OpenToed => "../pub/open-toed.jpg",
+    :Tall => "../pub/tall.jpg",
+    :FlipFlops => "../pub/flips.jpg",
+    :CowboyBoots => "../pub/cowboy-boots.jpg",
+    :Boots => "../pub/boots.jpg"
+  }
 
   def initialize *args
     @shoes_image_url = ""
@@ -51,14 +63,14 @@ class Shoes
   end
   
   def run(zip_code)
-    Zip.new(zip_code)
+    zip = Zip.new(zip_code)
     r = Request.new
-    b = r.temperature_and_precipitation(@zip_code)
-    b.norm_values
-    s = Shoes.new
-    s.find_shoes
+    b = r.temperature_and_precipitation(zip.zip_code)
+    shoes = find_shoes(r.norm_temp, r.norm_precip)
+    zip.save
+    @shoes_image_url = IMAGES[shoes.to_sym]
   end
-
+#50010, "99503", "33132"
 
 end
 

@@ -2,11 +2,14 @@ require_relative 'zip'
 require 'net/http'
 require 'rexml/document'
 require 'json'
+require_relative 'zip'
 
 class Request
   include Enumerable
   attr_accessor :temperature
   attr_accessor :precipitation
+
+  THRESHOLD = 30
 
   def initialize *args
     @temperature = 0
@@ -25,17 +28,19 @@ class Request
     if result.has_key? 'Error'
       raise "web service error"
     end
-    tmp = {}
-    tmp[:temperature] = result["forecast"]["simpleforecast"]["forecastday"][0]["high"]["fahrenheit"].to_i
-    tmp[:precipitation] = result["forecast"]["txt_forecast"]["forecastday"][0]["pop"].to_i
-    return tmp
+    
+    @temperature = result["forecast"]["simpleforecast"]["forecastday"][0]["high"]["fahrenheit"].to_i
+    @precipitation = result["forecast"]["txt_forecast"]["forecastday"][0]["pop"].to_i
+
+    { :temperature => @temperature, :precipitation => @precipitation }
+  end
+    
+  def norm_temp
+    (@temperature > 100 ? 90 : (@temperature/10.floor)*10)
   end
   
-  def norm_values
-    r = Request.new
-    z = Zip.new(@zip_code)
-    
-    new_temp = @temperature.floor
+  def norm_precip
+    (@precipitation > THRESHOLD ? true : false)
   end
 
   
@@ -54,4 +59,5 @@ end
 #http://api.wunderground.com/api/099628bc89fc5165/history_19921225/q/37080.json
 #array s/n zero, s/b int
 #response 200
-
+#because I'm in same class && I made temperature ACCESSOR I can leave offbeat
+#@ sign and use it as a method foo.temperature
