@@ -21,7 +21,7 @@ class String
 end
 
 
-Shoes.app :width => 300, :height => 500 do
+Shoes.app :width => 320, :height => 500 do
   background "#555"
 
   @title = "Shoes Today?"
@@ -33,19 +33,19 @@ Shoes.app :width => 300, :height => 500 do
     @zip = edit_line
     #flow { check; para "Click if you want me to remember your zip"}
     button "Get my shoes" do
-      para "editline zip =" + "#{@zip.text.length}"
-      batman = @zip
-      if @zip.text.length < 5
-        batman = File.open('zip.txt', 'r').read
-        para "file read: #{File.open('zip.txt', 'r').read}"
-      end
+   #   para "editline zip =" + "#{@zip.text.length}"
+   #   batman = @zip
+   #   if @zip.text.length < 5
+   #     batman = File.open('zip.txt', 'r').read
+   #     para "file read: #{File.open('zip.txt', 'r').read}"
+   #   end
 
-      @zip = batman
-      para "zip = #{@zip.text}"
-       para "zip-bat = #{batman.text}"
+     # @zip = batman
+    #  para "zip = #{@zip.text}"
+    #   para "zip-bat = #{batman.text}"
      s = Shoes.new
       picture = s.run("#{@zip.text}")
-      para picture
+     # para picture
       image picture, :margin => 8
     end
     

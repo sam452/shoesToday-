@@ -43,23 +43,3 @@ Temp	Precipitation		Shoes
 `10		true				Water-proof boots`
 
 check['temps']['90']['false']['shoe'] => tennis shoes
-
-[:temp => "", ]
-
-shoe_combos = [
-  {:temp => 90, :precipitation => false, :shoes => 'Sandals'},
-  {:temp => 90, :precipitation => true, :shoes => 'Flip-Flops'}
-]
-
-
-def find_shoes(temp, precipitation)
-  shoe_combos = [
-  {:temp => 90, :precipitation => false, :shoes => 'Sandals'},
-  {:temp => 90, :precipitation => true, :shoes => 'Flip-Flops'}
-]
-shoe_combos.each do |combo|
-    if (combo[:temp] == temp && combo[:precipitation] = precipitation)
-      return combo[:shoes]
-    end
-  end
-end

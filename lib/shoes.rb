@@ -38,6 +38,7 @@ class Shoes
     :Tall => "../pub/tall.jpg",
     :FlipFlops => "../pub/flips.jpg",
     :CowboyBoots => "../pub/cowboy-boots.jpg",
+    :Galoshes => "../pub/galoshes.jpg",
     :Boots => "../pub/boots.jpg"
   }
 
