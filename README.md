@@ -10,17 +10,15 @@ This is a classroom project to show basic Ruby prowess in implementation.
 Features
 --------------
 Given a zip code, the app will return an image of appropriate shoes to wear based on 
-parsing NOAA weather data for the day it is given. If you choose, you can indicate
-you want it to remember your zip code.
+parsing NOAA weather data for the day it is given. 
 
 Limitations
 ---------------
-Limitations of shoes.
+Limitations of shoes.rb.
 
 How to use it
 ---------------
-Enter in your zip code and then hit enter. If you want it to remember your
-zip code, click the "Remember me" button.
+Enter in your zip code and then hit enter. 
 
 Dependencies
 ----------------
@@ -28,10 +26,11 @@ shoesToday? is built with Shoes in Ruby.
 
 Resources
 -----------------
+Using the Wunderground JSON API.
 
 Bugs/ToDo
 ------------------
-
+Remember my zip code functionality needs to be fixed.
 
 Author/Info
 -----------------

@@ -22,7 +22,7 @@ class ZipTest < Test::Unit::TestCase
     assert_equal('37080', e.chomp)
   end
   
-  def test_z05_zip_exists
+  def test_z05_zip_saved?
     z = Zip.new("90210")
     z.save
     assert_equal(true, z.saved?)

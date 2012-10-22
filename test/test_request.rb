@@ -24,7 +24,7 @@ class RequestTest < Test::Unit::TestCase
     assert_equal(parsing["forecast"]["simpleforecast"]["forecastday"][0]["high"]["fahrenheit"].to_i, 72)
   end
 
-  def test_r04_stubRequest_37080_yields_0
+  def test_r04_stubRequest_37080_yields_0_percent_chance_of_precip
     a = Request.new
     f = File.open('./doc/test.txt', 'r')
     response = f.read

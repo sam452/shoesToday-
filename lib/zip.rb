@@ -14,8 +14,8 @@ class Zip
   end
   
   def save
-    File.open('zip.txt', 'w+') do |f|
-      f.puts @zip_code.to_s
+    File.open('zip.txt', 'w+') do |file|
+      file.puts @zip_code.to_s
     end
   end
   
