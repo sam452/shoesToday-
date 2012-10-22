@@ -13,7 +13,7 @@ class Shoes
     {:temp => 90, :precipitation => true, :shoes => 'FlipFlops'},
     {:temp => 80, :precipitation => false, :shoes => 'Sandals'},
     {:temp => 80, :precipitation => true, :shoes => 'Flats'},
-    {:temp => 70, :precipitation => false, :shoes => 'Open-toed'},
+    {:temp => 70, :precipitation => false, :shoes => 'OpenToed'},
     {:temp => 70, :precipitation => true, :shoes => 'Tall'},
     {:temp => 60, :precipitation => false, :shoes => 'PatentLeather'},
     {:temp => 60, :precipitation => true, :shoes => 'Tall'},
@@ -64,7 +64,8 @@ class Shoes
     zip = Zip.new(zip_code)
     request = Request.new
     raw_values = request.temperature_and_precipitation(zip.zip_code)
-    shoes = find_shoes(request.norm_temp, request.norm_precip)
+    my_shoes = Shoes.new
+    shoes = my_shoes.find_shoes(request.norm_temp, request.norm_precip)
     zip.save
     @shoes_image_url = IMAGES[shoes.to_sym]
   end

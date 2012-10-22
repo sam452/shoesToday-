@@ -33,11 +33,8 @@ Shoes.app :width => 320, :height => 500 do
     @zip = edit_line
     #flow { check; para "Click if you want me to remember your zip"}
     button "Get my shoes" do
-      if "Must be a 5-digit zip code"
-        subtitle "Must be a 5-digit zip code"
-      end
-     s = Shoes.new
-      picture = s.run("#{@zip.text}")
+     shoes = Shoes.new
+      picture = shoes.run("#{@zip.text}")
       image picture, :margin => 8
     end
     
