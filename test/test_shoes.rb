@@ -6,46 +6,28 @@ require 'pry'
 
 class ShoeTest < Test::Unit::TestCase
 
-  def test_s01_temp_70_precip_is_false_yields_open_toed_focus
-    z = Zip.new("37080")
-    r = Request.new
-    response = r.get_weather(z.zip_code)
-    s = Shoes.new
-    assert_equal("Open-toed", s.find_shoes(70, false))
+  def test_s01_temp_70_precip_is_false_yields_open_toed
+    zip = Zip.new("37080")
+    request = Request.new
+    response = request.get_weather(zip.zip_code)
+    shoes = Shoes.new
+    assert_equal("Open-toed", shoes.find_shoes(70, false))
   end
   
-  def test_s10_failure_returns_last_shoe
-    Request.stubs(:get_weather).raises
+  def test_s20_37080_yields_opentoed_shoes
+    zip = Zip.new("37080")
+    request = Request.new
+    file = File.open('./doc/test.txt', 'r')
+    response = file.read
+    parsing = JSON.parse(response)
+    @temperature = parsing["forecast"]["simpleforecast"]["forecastday"][0]["high"]["fahrenheit"].to_i
+    @precipitation = parsing["forecast"]["txt_forecast"]["forecastday"][0]["pop"].to_i
+    request.norm_temp
+    request.norm_precip
+    shoes = Shoes.new
+    my_shoes = shoes.find_shoes(@temperature, @precipitation)
+    assert_equal("../pub/open-toed.jpg", IMAGES[my_shoes.to_sym])
   end
-  
-  def test_s05_precip_below_threshold_yields_false
-    
-  end
-  
-  def test_s20_37080
-    z = Zip.new("37210")
-    r = Request.new
-    response = r.get_weather(z.zip_code)
-    s = Shoes.new
-    assert_equal("../pub/open-toed.jpg", s.run(z.zip_code))
-  end
- 
-   def test_s21_50010
-    z = Zip.new("50010")
-    r = Request.new
-    response = r.get_weather(z.zip_code)
-    s = Shoes.new
-    assert_equal("../pub/open-toed.jpg", s.run(z.zip_code))
-  end
-  
-   def test_s21_99503
-    z = Zip.new("99503")
-    r = Request.new
-    response = r.get_weather(z.zip_code)
-    s = Shoes.new
-    assert_equal("../pub/open-toed.jpg", s.run(z.zip_code))
-  end
-  
-
 
 end
+

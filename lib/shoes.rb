@@ -44,9 +44,6 @@ class Shoes
 
   def initialize *args
     @shoes_image_url = ""
-    #req = Request.new
-    #my_array = [@temp, @precipitation]
-    #req.my_weather "37215"
   end
   
   def last_shoes= (shoes)
@@ -65,9 +62,9 @@ class Shoes
   
   def run(zip_code)
     zip = Zip.new(zip_code)
-    r = Request.new
-    b = r.temperature_and_precipitation(zip.zip_code)
-    shoes = find_shoes(r.norm_temp, r.norm_precip)
+    request = Request.new
+    raw_values = request.temperature_and_precipitation(zip.zip_code)
+    shoes = find_shoes(request.norm_temp, request.norm_precip)
     zip.save
     @shoes_image_url = IMAGES[shoes.to_sym]
   end

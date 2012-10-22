@@ -4,8 +4,8 @@ require 'request'
 class ZipTest < Test::Unit::TestCase
 
   def test_z02_37080_complete
-    z = Zip.new("37080")
-    assert_equal("37080", z.zip_code)
+    zip = Zip.new("37080")
+    assert_equal("37080", zip.zip_code)
   end
   
   def test_z03_12_yields_error
@@ -15,17 +15,17 @@ class ZipTest < Test::Unit::TestCase
   end
 
   def test_z04_zip_is_saved
-    z = Zip.new("37080")
-    z.save
-    f = File.open("zip.txt", "r")
-    e = f.read
-    assert_equal('37080', e.chomp)
+    zip = Zip.new("37080")
+    zip.save
+    file = File.open("zip.txt", "r")
+    output = file.read
+    assert_equal('37080', output.chomp)
   end
   
   def test_z05_zip_saved?
-    z = Zip.new("90210")
-    z.save
-    assert_equal(true, z.saved?)
+    zip = Zip.new("90210")
+    zip.save
+    assert_equal(true, zip.saved?)
   end
 
 
